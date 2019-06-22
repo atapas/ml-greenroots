@@ -27,7 +27,7 @@ class StaticImageClassification extends Component {
     // Initialize the Image Classifier method with MobileNet
     const classifier = ml5.imageClassifier('MobileNet', modelLoaded);
     // When the model is loaded
-    function modelLoaded() {
+    async function modelLoaded() {
       console.log('Model Loaded!');
     }
     // Put the image to classify inside a variable
@@ -35,7 +35,8 @@ class StaticImageClassification extends Component {
 
     
     // Make a prediction with a selected image
-    classifier.predict(image, 5, function(err, results) {
+    modelLoaded().then(
+      classifier.predict(image, 5, function(err, results) {
       if(err) {
         console.log(err);
       }
@@ -46,7 +47,7 @@ class StaticImageClassification extends Component {
       return results;
     }).then((results) => {
         this.setPredictions(results);
-    });
+    }));
   }
 
   componentDidMount(){
