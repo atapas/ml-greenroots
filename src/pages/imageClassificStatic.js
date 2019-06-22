@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 import * as ml5 from "ml5";
 
 // Photo by Derek Oyen on Unsplash
-import peng from "../images/peng.jpg";
+import unknown from "../images/unknown.jpg";
 
 
 class StaticImageClassification extends Component {
@@ -27,7 +27,7 @@ class StaticImageClassification extends Component {
     // Initialize the Image Classifier method with MobileNet
     const classifier = ml5.imageClassifier('MobileNet', modelLoaded);
     // When the model is loaded
-    async function modelLoaded() {
+    function modelLoaded() {
       console.log('Model Loaded!');
     }
     // Put the image to classify inside a variable
@@ -35,8 +35,7 @@ class StaticImageClassification extends Component {
 
     
     // Make a prediction with a selected image
-    modelLoaded().then(
-      classifier.predict(image, 5, function(err, results) {
+    classifier.predict(image, 5, function(err, results) {
       if(err) {
         console.log(err);
       }
@@ -47,7 +46,7 @@ class StaticImageClassification extends Component {
       return results;
     }).then((results) => {
         this.setPredictions(results);
-    }));
+    });
   }
 
   componentDidMount(){
@@ -72,7 +71,7 @@ class StaticImageClassification extends Component {
         <SEO title="Page two" />
         <h1>Static Image Classifications</h1>
         <div id="sic">
-          <img src={ peng } id="peng_image_id" width="400" alt="" />
+          <img src={ unknown } id="peng_image_id" width="400" height="300" alt=""/>
           { predictions }
         </div>
         <Link to="/">Go back to the homepage</Link>
