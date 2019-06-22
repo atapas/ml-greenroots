@@ -1,4 +1,5 @@
 import React, {Component} from "react"
+import Select from 'react-select';
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
@@ -9,12 +10,23 @@ import * as ml5 from "ml5";
 // Photo by Derek Oyen on Unsplash
 // import unknown from "../images/unknown.jpg";
 import peng from "../images/pengu.jpg";
+import boat from "../images/boat.jpg";
+import deer from "../images/deer.jpg";
+import unknown from "../images/unknown.jpg";
+import human from "../images/human.jpg";
 
+const images = [
+  { label: "Boat", value: boat },
+  { label: "Deer", value: deer },
+  { label: "human", value: human },
+  { label: "Penguin", value: peng },
+  { label: "Unknown", value: unknown }
+];
 
-class StaticImageClassification extends Component {
-
+class StaticImageClassification extends Component {  
   state = {
-    predictions: []  // Set the empty array predictions state
+    selectedOption: images[0],
+    predictions: [] // Set the empty array predictions state
   }
 
   setPredictions = (pred) => {
@@ -23,6 +35,12 @@ class StaticImageClassification extends Component {
       predictions: pred
     });
   }
+
+  handleChange = selectedOption => {
+    this.setState({ selectedOption });
+    console.log(`Option selected:`, selectedOption);
+    this.classifyImg();
+  };
 
   classifyImg = () => {
     // Initialize the Image Classifier method with MobileNet
@@ -56,6 +74,9 @@ class StaticImageClassification extends Component {
   }
 
   render() {
+    const { selectedOption } = this.state;
+    let imageToRender = (<img src={ selectedOption.value } id="peng_image_id" width="400" height="300" alt=""/>)
+
     let predictions = (<div>Predictions to come here!</div>);
     if(this.state.predictions.length > 0){
       predictions = this.state.predictions.map((pred, i) => {
@@ -71,8 +92,15 @@ class StaticImageClassification extends Component {
       <Layout>
         <SEO title="Page two" />
         <h1>Static Image Classifications</h1>
+        
+        <Select
+        value={selectedOption}
+        onChange={this.handleChange}
+        options={images}
+        />
+        
         <div id="sic">
-          <img src={ peng } id="peng_image_id" width="400" height="300" alt=""/>
+          { imageToRender }
           { predictions }
         </div>
         <Link to="/">Go back to the homepage</Link>
