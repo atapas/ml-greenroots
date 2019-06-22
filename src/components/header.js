@@ -21,7 +21,7 @@ const Header = ({ siteTitle }) => (
       <Link
         to="/"
       >
-      <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+      <div style={{ maxWidth: `80px`, marginBottom: `1.45rem` }}>
         <Image />
       </div>
       </Link>

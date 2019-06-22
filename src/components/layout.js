@@ -10,7 +10,7 @@ import PropTypes from "prop-types"
 import { StaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
-import "./layout.css"
+import "../styles/layout.css"
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -34,11 +34,13 @@ const Layout = ({ children }) => (
             paddingTop: 0,
           }}
         >
-          <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()} 
-             <a href="https://www.greenroots.info">https://www.greenroots.info</a>
-          </footer>
+
+        <main>{children}</main>
+        
+        <footer className="blockquote-footer">
+          © {new Date().getFullYear()} &nbsp;
+            <a href="https://www.greenroots.info">https://www.greenroots.info</a>
+        </footer>
         </div>
       </>
     )}
