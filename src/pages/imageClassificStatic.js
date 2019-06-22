@@ -8,7 +8,7 @@ import * as ml5 from "ml5";
 
 // Photo by Derek Oyen on Unsplash
 // import unknown from "../images/unknown.jpg";
-import deer from "../images/deer.jpg";
+import peng from "../images/pengu.jpg";
 
 
 class StaticImageClassification extends Component {
@@ -72,7 +72,7 @@ class StaticImageClassification extends Component {
         <SEO title="Page two" />
         <h1>Static Image Classifications</h1>
         <div id="sic">
-          <img src={ deer } id="peng_image_id" width="400" height="300" alt=""/>
+          <img src={ peng } id="peng_image_id" width="400" height="300" alt=""/>
           { predictions }
         </div>
         <Link to="/">Go back to the homepage</Link>
