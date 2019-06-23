@@ -111,7 +111,7 @@ class ImageClassification extends Component {
     }
     return (
       <Layout>
-        <SEO title="Page two" />
+        <SEO title="Image Classification" />
         <h1>Image Classification</h1>
         
         <Select
