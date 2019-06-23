@@ -24,7 +24,7 @@ const images = [
   { label: "Unknown", value: unknown }
 ];
 
-class ImageClassification extends Component {  
+class ML5ImageClassification extends Component {  
   state = {
     selectedOption: images[0],
     predictions: [], // Set the empty array predictions state
@@ -131,4 +131,4 @@ class ImageClassification extends Component {
   }
 }
 
-export default ImageClassification
+export default ML5ImageClassification

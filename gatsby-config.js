@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Green ML`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: `Exciting examples and learning experience on Machine Learning`,
     author: `@greenroots`,
   },
   plugins: [
