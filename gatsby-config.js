@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Green Roots`,
+    title: `Green ML`,
     description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    author: `@greenroots`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

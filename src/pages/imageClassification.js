@@ -7,8 +7,9 @@ import SEO from "../components/seo"
 
 import * as ml5 from "ml5";
 
-// Photo by Derek Oyen on Unsplash
-// import unknown from "../images/unknown.jpg";
+import Spinner from 'react-bootstrap/Spinner';
+
+
 import peng from "../images/pengu.jpg";
 import boat from "../images/boat.jpg";
 import deer from "../images/deer.jpg";
@@ -26,7 +27,8 @@ const images = [
 class ImageClassification extends Component {  
   state = {
     selectedOption: images[0],
-    predictions: [] // Set the empty array predictions state
+    predictions: [], // Set the empty array predictions state
+    loader: (<div><Spinner animation="grow" />&nbsp;<span>Predicting...</span></div>)
   }
 
   setPredictions = (pred) => {
@@ -36,10 +38,27 @@ class ImageClassification extends Component {
     });
   }
 
+  setLoader = (show) => {
+    if (show) {
+      this.setState({
+        loader: (<div><Spinner animation="grow" />&nbsp;<span>Predicting...</span></div>)
+      });
+    } else {
+      this.setState({
+        loader: (<div></div>)
+      });
+    }
+  }
+
   handleChange = selectedOption => {
     this.setState({ selectedOption });
+    this.setLoader(true);
+    this.setPredictions([]);
     console.log(`Option selected:`, selectedOption);
-    this.componentDidMount();
+    setTimeout(() => {
+      // once the component has mount, start the classification
+      this.classifyImg();
+    }, 2000);
   };
 
   classifyImg = () => {
@@ -64,22 +83,22 @@ class ImageClassification extends Component {
       console.log(results);
       return results;
     }).then((results) => {
-        this.setPredictions(results);
+      this.setLoader(false);
+      this.setPredictions(results);
     });
   }
 
   componentDidMount(){
-    setTimeout(() => {
-       // once the component has mount, start the classification
       this.classifyImg();
-    }, 2000);
   }
+
 
   render() {
     const { selectedOption } = this.state;
     let imageToRender = (<img src={ selectedOption.value } id="peng_image_id" width="400" height="300" alt=""/>)
 
-    let predictions = (<div>Predictions to come here!</div>);
+    let loader = this.state.loader;
+    let predictions = "";
     if(this.state.predictions.length > 0){
       predictions = this.state.predictions.map((pred, i) => {
         let { label, confidence } = pred;
@@ -103,6 +122,7 @@ class ImageClassification extends Component {
         
         <div id="sic">
           { imageToRender }
+          { loader }
           { predictions }
         </div>
         <Link to="/">Go back to the homepage</Link>

@@ -36,7 +36,7 @@ const Layout = ({ children }) => (
         >
 
         <main>{children}</main>
-        
+        <br/><br/>
         <footer className="blockquote-footer">
           © {new Date().getFullYear()} &nbsp;
             <a href="https://www.greenroots.info">https://www.greenroots.info</a>
