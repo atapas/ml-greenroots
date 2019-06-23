@@ -17,17 +17,17 @@ const IndexPage = () => (
       <Card.Body>
         <Card.Title>Image Classification</Card.Title>
         <Card.Text>
-          <p>
             Image classification is a supervised learning problem: define a 
             set of target classes (objects to identify in images), and train a 
             model to recognize them using labeled example photos.
-          </p>
-          <p>
-            Here is an Implementation of it using ML5 library.
-          </p>
         </Card.Text>
-        <Link to="/imageClassification/">See in Action</Link>
+        <Card.Text>
+            Here is an Implementation of it using ML5 library.
+        </Card.Text>  
       </Card.Body>
+      <Card.Footer>
+        <Link to="/imageClassification/">See in Action</Link>
+      </Card.Footer>
     </Card>
   </Layout>
 )

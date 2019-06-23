@@ -39,7 +39,7 @@ class ImageClassification extends Component {
   handleChange = selectedOption => {
     this.setState({ selectedOption });
     console.log(`Option selected:`, selectedOption);
-    this.classifyImg();
+    this.componentDidMount();
   };
 
   classifyImg = () => {
@@ -69,8 +69,10 @@ class ImageClassification extends Component {
   }
 
   componentDidMount(){
-    // once the component has mount, start the classification
-    this.classifyImg();
+    setTimeout(() => {
+       // once the component has mount, start the classification
+      this.classifyImg();
+    }, 2000);
   }
 
   render() {
