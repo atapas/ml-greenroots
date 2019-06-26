@@ -9,6 +9,7 @@ import * as ml5 from "ml5";
 
 import Spinner from 'react-bootstrap/Spinner';
 
+import ImageUploader from 'react-images-upload';
 
 import peng from "../images/pengu.jpg";
 import boat from "../images/boat.jpg";
@@ -24,11 +25,22 @@ const images = [
   { label: "Unknown", value: unknown }
 ];
 
-class ML5ImageClassification extends Component {  
-  state = {
-    selectedOption: images[0],
-    predictions: [], // Set the empty array predictions state
-    loader: (<div><Spinner animation="grow" />&nbsp;<span>Predicting...</span></div>)
+class ML5ImageClassification extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: images[0],
+      predictions: [], // Set the empty array predictions state
+      loader: (<div><Spinner animation="grow" />&nbsp;<span>Predicting...</span></div>),
+     
+    };
+    this.onDrop = this.onDrop.bind(this);
+  }
+
+  onDrop(pictureFiles, pictureDataURLs) {
+    if (pictureFiles.length > 0) {
+      images.push({label: pictureFiles[0].name, value: pictureDataURLs[0]});
+    }
   }
 
   setPredictions = (pred) => {
@@ -114,6 +126,15 @@ class ML5ImageClassification extends Component {
         <SEO title="Image Classification" />
         <h1>Image Classification</h1>
         
+        <ImageUploader
+          withIcon={true}
+          buttonText='BYOI'
+          onChange={this.onDrop}
+          imgExtension={['.jpg', '.gif', '.png', '.gif']}
+          maxFileSize={200000}
+          fileSizeError="File size is too long for this test. Max allowed size is 200kbs."
+        />
+
         <Select
         value={selectedOption}
         onChange={this.handleChange}
