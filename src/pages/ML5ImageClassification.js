@@ -11,6 +11,8 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import ImageUploader from 'react-images-upload';
 
+import '../styles/bootstrap.min.css';
+
 import peng from "../images/pengu.jpg";
 import boat from "../images/boat.jpg";
 import deer from "../images/deer.jpg";
@@ -20,7 +22,7 @@ import human from "../images/human.jpg";
 const images = [
   { label: "Boat", value: boat },
   { label: "Deer", value: deer },
-  { label: "human", value: human },
+  { label: "Human", value: human },
   { label: "Penguin", value: peng },
   { label: "Unknown", value: unknown }
 ];
@@ -39,8 +41,28 @@ class ML5ImageClassification extends Component {
 
   onDrop(pictureFiles, pictureDataURLs) {
     if (pictureFiles.length > 0) {
-      images.push({label: pictureFiles[0].name, value: pictureDataURLs[0]});
+      for (let pictureDataURL of pictureDataURLs) {
+        let name = (pictureDataURL.split(';')[1]).split('=')[1];
+        let obj = {label: name, value: pictureDataURL};
+        let matchFound = false;
+        for (let i=0; i<images.length; i++) {
+          if(images[i].label === name){
+            console.log('match');
+            matchFound = true;
+            break;
+          } else {
+            console.log('No Match with ', images[i].label);
+          }
+        }
+        if (!matchFound) {
+          images.push(obj);
+          this.setState({
+            selectedOption: obj
+          });
+        }
+      }
     }
+    console.log('All the images', images);
   }
 
   setPredictions = (pred) => {
@@ -124,15 +146,19 @@ class ML5ImageClassification extends Component {
     return (
       <Layout>
         <SEO title="Image Classification" />
+        <Link to="/"> Go back to the homepage</Link>
+
         <h1>Image Classification</h1>
         
         <ImageUploader
           withIcon={true}
+          withLabel={true}
           buttonText='BYOI'
           onChange={this.onDrop}
-          imgExtension={['.jpg', '.gif', '.png', '.gif']}
-          maxFileSize={200000}
-          fileSizeError="File size is too long for this test. Max allowed size is 200kbs."
+          imgExtension={['.jpg', '.gif', '.png', '.ico']}
+          maxFileSize={500000}
+          fileSizeError="File size is too long for this test. Max allowed size is 500kbs."
+          label="Max file size: 500kb, accepted: jpg|gif|png|ico"
         />
 
         <Select
@@ -146,7 +172,7 @@ class ML5ImageClassification extends Component {
           { loader }
           { predictions }
         </div>
-        <Link to="/">Go back to the homepage</Link>
+        
       </Layout>
     );
   }
