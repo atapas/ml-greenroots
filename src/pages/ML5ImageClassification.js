@@ -59,6 +59,7 @@ class ML5ImageClassification extends Component {
           this.setState({
             selectedOption: obj
           });
+          this.handleChange(obj);
         }
       }
     }
@@ -146,32 +147,35 @@ class ML5ImageClassification extends Component {
     return (
       <Layout>
         <SEO title="Image Classification" />
-        <Link to="/"> Go back to the homepage</Link>
 
-        <h1>Image Classification</h1>
-        
-        <ImageUploader
-          withIcon={true}
-          withLabel={true}
-          buttonText='BYOI'
-          onChange={this.onDrop}
-          imgExtension={['.jpg', '.gif', '.png', '.ico']}
-          maxFileSize={500000}
-          fileSizeError="File size is too long for this test. Max allowed size is 500kbs."
-          label="Max file size: 500kb, accepted: jpg|gif|png|ico"
-        />
+        <React.Fragment>
+          <Link to="/"> Go back to the homepage</Link>
 
-        <Select
-        value={selectedOption}
-        onChange={this.handleChange}
-        options={images}
-        />
-        
-        <div id="sic">
-          { imageToRender }
-          { loader }
-          { predictions }
-        </div>
+          <h1>Image Classification</h1>
+          
+          <ImageUploader
+            withIcon={true}
+            withLabel={true}
+            buttonText='BYOI'
+            onChange={this.onDrop}
+            imgExtension={['.jpg', '.gif', '.png', '.ico', 'jpeg']}
+            maxFileSize={500000}
+            fileSizeError="File size is too long for this test. Max allowed size is 500kbs."
+            label="Max file size: 500kb, accepted: jpg|gif|png|ico|jpeg"
+          />
+
+          <Select
+          value={selectedOption}
+          onChange={this.handleChange}
+          options={images}
+          />
+          
+          <div id="sic">
+            { imageToRender }
+            { loader }
+            { predictions }
+          </div>
+        </React.Fragment>
         
       </Layout>
     );
