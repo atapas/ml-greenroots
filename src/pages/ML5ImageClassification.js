@@ -33,7 +33,7 @@ class ML5ImageClassification extends Component {
     this.state = {
       selectedOption: images[0],
       predictions: [], // Set the empty array predictions state
-      loader: (<div><Spinner animation="grow" />&nbsp;<span>Predicting...</span></div>),
+      loader: true,
      
     };
     this.onDrop = this.onDrop.bind(this);
@@ -74,15 +74,9 @@ class ML5ImageClassification extends Component {
   }
 
   setLoader = (show) => {
-    if (show) {
-      this.setState({
-        loader: (<div><Spinner animation="grow" />&nbsp;<span>Predicting...</span></div>)
-      });
-    } else {
-      this.setState({
-        loader: (<div></div>)
-      });
-    }
+    this.setState({
+      loader: show
+    });
   }
 
   handleChange = selectedOption => {
@@ -132,7 +126,10 @@ class ML5ImageClassification extends Component {
     const { selectedOption } = this.state;
     let imageToRender = (<img src={ selectedOption.value } id="peng_image_id" width="400" height="300" alt=""/>)
 
-    let loader = this.state.loader;
+    let loaderToRender = (<div></div>);
+    if(this.state.loader) {
+      loaderToRender = (<div><Spinner animation="grow" />&nbsp;<span>Predicting...</span></div>);
+    }
     let predictions = "";
     if(this.state.predictions.length > 0){
       predictions = this.state.predictions.map((pred, i) => {
@@ -159,9 +156,9 @@ class ML5ImageClassification extends Component {
             buttonText='BYOI'
             onChange={this.onDrop}
             imgExtension={['.jpg', '.gif', '.png', '.ico', 'jpeg']}
-            maxFileSize={500000}
-            fileSizeError="File size is too long for this test. Max allowed size is 500kbs."
-            label="Max file size: 500kb, accepted: jpg|gif|png|ico|jpeg"
+            maxFileSize={1000000}
+            fileSizeError="File size is too long for this test. Max allowed size is 1Mb."
+            label="Max file size: 1Mb, accepted: jpg|gif|png|ico|jpeg"
           />
 
           <Select
@@ -172,7 +169,7 @@ class ML5ImageClassification extends Component {
           
           <div id="sic">
             { imageToRender }
-            { loader }
+            { loaderToRender }
             { predictions }
           </div>
         </React.Fragment>
