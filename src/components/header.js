@@ -21,9 +21,10 @@ const Header = ({ siteTitle }) => (
       <Link
         to="/"
       >
-      <div style={{ maxWidth: `80px`, marginBottom: `1.45rem` }}>
-        <Image />
-      </div>
+      
+      <h1 style={{ marginBottom: `1.45rem` }}>
+        {siteTitle}
+      </h1>
       </Link>
     </div>
   </header>

@@ -11,6 +11,10 @@ import Spinner from 'react-bootstrap/Spinner';
 
 import ImageUploader from 'react-images-upload';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import '../styles/bootstrap.min.css';
 
 import peng from "../images/pengu.jpg";
@@ -148,30 +152,46 @@ class ML5ImageClassification extends Component {
         <React.Fragment>
           <Link to="/"> Go back to the homepage</Link>
 
-          <h1>Image Classification</h1>
-          
-          <ImageUploader
-            withIcon={true}
-            withLabel={true}
-            buttonText='BYOI'
-            onChange={this.onDrop}
-            imgExtension={['.jpg', '.gif', '.png', '.ico', 'jpeg']}
-            maxFileSize={1000000}
-            fileSizeError="File size is too long for this test. Max allowed size is 1Mb."
-            label="Max file size: 1Mb, accepted: jpg|gif|png|ico|jpeg"
-          />
+          <Container className="predResult">
+            <Row>
+              <Col>
+                <h1>Image Classification</h1>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+              <ImageUploader
+                withIcon={true}
+                withLabel={true}
+                buttonText='BYOI'
+                onChange={this.onDrop}
+                imgExtension={['.jpg', '.gif', '.png', '.ico', 'jpeg']}
+                maxFileSize={1000000}
+                fileSizeError="File size is too long for this test. Max allowed size is 1Mb."
+                label="Max file size: 1Mb, accepted: jpg|gif|png|ico|jpeg"
+              />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Select
+                value={selectedOption}
+                onChange={this.handleChange}
+                options={images}
+                />
+              </Col>  
+            </Row>
+            <Row>
+              <Col>
+                <div id="sic">
+                  { imageToRender }
+                  { loaderToRender }
+                  { predictions }
+                </div>
+              </Col>
+            </Row>
+          </Container>
 
-          <Select
-          value={selectedOption}
-          onChange={this.handleChange}
-          options={images}
-          />
-          
-          <div id="sic">
-            { imageToRender }
-            { loaderToRender }
-            { predictions }
-          </div>
         </React.Fragment>
         
       </Layout>

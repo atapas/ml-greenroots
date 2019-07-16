@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Green ML`,
+    title: `GreenRoots ML`,
     description: `Exciting examples and learning experience on Machine Learning`,
     author: `@greenroots`,
   },
