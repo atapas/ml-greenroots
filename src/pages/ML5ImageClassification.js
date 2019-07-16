@@ -15,6 +15,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
+import ListGroup from 'react-bootstrap/ListGroup';
+
 import '../styles/bootstrap.min.css';
 
 import peng from "../images/pengu.jpg";
@@ -22,6 +24,7 @@ import boat from "../images/boat.jpg";
 import deer from "../images/deer.jpg";
 import unknown from "../images/unknown.jpg";
 import human from "../images/human.jpg";
+import tick from "../images/tick.png";
 
 const images = [
   { label: "Boat", value: boat },
@@ -102,7 +105,7 @@ class ML5ImageClassification extends Component {
       console.log('Model Loaded!');
     }
     // Put the image to classify inside a variable
-    const image = document.getElementById('peng_image_id');
+    const image = document.getElementById('classific_image_id');
 
     
     // Make a prediction with a selected image
@@ -128,7 +131,7 @@ class ML5ImageClassification extends Component {
 
   render() {
     const { selectedOption } = this.state;
-    let imageToRender = (<img src={ selectedOption.value } id="peng_image_id" width="400" height="300" alt=""/>)
+    let imageToRender = (<img src={ selectedOption.value } id="classific_image_id" width="400" height="300" alt=""/>)
 
     let loaderToRender = (<div></div>);
     if(this.state.loader) {
@@ -136,12 +139,17 @@ class ML5ImageClassification extends Component {
     }
     let predictions = "";
     if(this.state.predictions.length > 0){
-      predictions = this.state.predictions.map((pred, i) => {
+      predictions =  this.state.predictions.map((pred, i) => {
         let { label, confidence } = pred;
         // round the probability with 2 decimal
         confidence = Math.floor(confidence * 10000) / 100 + "%";
         return (
-          <div key={ i + "" }>{ i+1 }. Prediction: { label } at { confidence } </div>
+          
+          <ListGroup.Item key={ i + "" }>
+          <img src={tick} height="40px" width="40px" alt=""/>
+              <span> Prediction: { label } at { confidence } </span>
+            
+          </ListGroup.Item>
         )
       });
     }
@@ -186,7 +194,9 @@ class ML5ImageClassification extends Component {
                 <div id="sic">
                   { imageToRender }
                   { loaderToRender }
-                  { predictions }
+                  <ListGroup variant="flush">
+                    { predictions }
+                  </ListGroup>
                 </div>
               </Col>
             </Row>
