@@ -16,3 +16,7 @@ Browse to `/src/pages/ML5ImageClassification.js` to see the code for it.
 The Project is integrated with Netlify to build and host.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8999ecc9-83ac-4be7-8733-1ef4fa598363/deploy-status)](https://app.netlify.com/sites/ml-greenroots-info/deploys)
+
+# Demo
+
+The Project [demo can be seen here](https://ml-greenroots-info.netlify.com/).
