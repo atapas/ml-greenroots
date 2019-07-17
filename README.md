@@ -12,6 +12,9 @@ There are plenty of options out there to try JavaScript based ML library or tool
 
 Browse to `/src/pages/ML5ImageClassification.js` to see the code for it.
 
+## Blog
+[Read this post to learn](https://blog.greenroots.info/how-i-attempted-image-classification-in-the-browser-using-ml5js-and-react-cjy720fwi000lq4s1bzw4btzl) more about this.
+
 # Build and CMS
 The Project is integrated with Netlify to build and host.
 
