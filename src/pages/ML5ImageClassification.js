@@ -108,7 +108,7 @@ class ML5ImageClassification extends Component {
 
     
     // Make a prediction with a selected image
-    classifier.predict(image, 5, function(err, results) {
+    classifier.predict(image, 3, function(err, results) {
       if(err) {
         console.log(err);
       }
@@ -145,7 +145,9 @@ class ML5ImageClassification extends Component {
         return (
           <ListGroup.Item key={ i + "" }>
           <img src={tick} height="40px" width="40px" alt=""/>
-              <span> Prediction: { label } at { confidence } </span>
+              <span> 
+                <b>{ label }</b> with Confidence at <i>{ confidence }</i> 
+              </span>
           </ListGroup.Item>
         )
       });
@@ -190,6 +192,7 @@ class ML5ImageClassification extends Component {
               <Col>
                 <div id="sic">
                   { imageToRender }
+                  <h3>Predictions:</h3>
                   { loaderToRender }
                   <ListGroup variant="flush">
                     { predictions }
