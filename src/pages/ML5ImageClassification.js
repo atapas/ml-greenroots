@@ -41,7 +41,6 @@ class ML5ImageClassification extends Component {
       selectedOption: images[0],
       predictions: [], // Set the empty array predictions state
       loader: true,
-     
     };
     this.onDrop = this.onDrop.bind(this);
   }
@@ -144,11 +143,9 @@ class ML5ImageClassification extends Component {
         // round the probability with 2 decimal
         confidence = Math.floor(confidence * 10000) / 100 + "%";
         return (
-          
           <ListGroup.Item key={ i + "" }>
           <img src={tick} height="40px" width="40px" alt=""/>
               <span> Prediction: { label } at { confidence } </span>
-            
           </ListGroup.Item>
         )
       });
@@ -201,9 +198,7 @@ class ML5ImageClassification extends Component {
               </Col>
             </Row>
           </Container>
-
         </React.Fragment>
-        
       </Layout>
     );
   }
