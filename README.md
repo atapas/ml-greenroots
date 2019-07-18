@@ -19,17 +19,17 @@ Browse to `/src/pages/ML5ImageClassification.js` to see the code for it.
 
 ## Start developing
 
-    Navigate into your new site’s directory and start it up.
+Navigate into your new site’s directory and start it up.
 
-    ```sh
-    cd ml-greenroots/
-    npm install
-    gatsby develop
-    ```
+```sh
+cd ml-greenroots/
+npm install
+gatsby develop
+```
 
 **Open the source code and start editing!**
 
-    Your site is now running at `http://localhost:8000`!
+Your site is now running at `http://localhost:8000`!
 
 # Build and CMS
 The Project is integrated with Netlify to build and host.
