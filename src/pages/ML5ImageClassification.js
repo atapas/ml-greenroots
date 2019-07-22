@@ -38,9 +38,9 @@ class ML5ImageClassification extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedOption: images[0],
+      selectedOption: 'Select',
       predictions: [], // Set the empty array predictions state
-      loader: true,
+      loader: false,
     };
     this.onDrop = this.onDrop.bind(this);
   }
@@ -86,14 +86,16 @@ class ML5ImageClassification extends Component {
   }
 
   handleChange = selectedOption => {
-    this.setState({ selectedOption });
-    this.setLoader(true);
-    this.setPredictions([]);
-    console.log(`Option selected:`, selectedOption);
-    setTimeout(() => {
-      // once the component has mount, start the classification
-      this.classifyImg();
-    }, 2000);
+    if(selectedOption !== 'Select') {
+      this.setState({ selectedOption });
+      this.setLoader(true);
+      this.setPredictions([]);
+      console.log(`Option selected:`, selectedOption);
+      setTimeout(() => {
+        // once the component has mount, start the classification
+        this.classifyImg();
+      }, 2000);
+    }
   };
 
   classifyImg = () => {
@@ -123,14 +125,13 @@ class ML5ImageClassification extends Component {
     });
   }
 
-  componentDidMount(){
-      this.classifyImg();
-  }
-
-
   render() {
     const { selectedOption } = this.state;
-    let imageToRender = (<img src={ selectedOption.value } id="classific_image_id" width="400" height="300" alt=""/>)
+    let imageToRender = (<span></span>);
+
+    if(selectedOption !== 'Select') {
+      imageToRender = (<img src={ selectedOption.value } id="classific_image_id" width="400" height="300" alt=""/>)
+    }
 
     let loaderToRender = (<div></div>);
     if(this.state.loader) {
