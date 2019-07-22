@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col'
 import '../styles/bootstrap.min.css'
 
 import ML5ImageClassificationCard from '../components/cards/ML5ImageClassCard.js'
+import ML5VideoClassificationCard from '../components/cards/ML5VideoClassCard'
 
 const IndexPage = () => (
   <Layout>
@@ -16,6 +17,7 @@ const IndexPage = () => (
     <Container>
       <Row>
         <Col><ML5ImageClassificationCard /></Col>
+        <Col><ML5VideoClassificationCard /></Col>
       </Row>
     </Container>
   </Layout>
